@@ -1235,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption(P.H.U.C.S AI — Định hình tương lai, kiến tạo giá trị.")
+st.caption(💌P.H.U.C.S AI: Định hình tương lai, kiến tạo giá trị.")
