@@ -1135,5 +1135,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("💌P.H.U.C.S AI được tạo ra để thay đổi thế giới, còn Nguyễn Ngọc Gia Phúc được sinh ra để tạo ra điều kỳ diệu
-Copyright © 2026 by Nguyễn Ngọc Gia Phúc..")
+st.caption("💌P.H.U.C.S AI được tạo ra để thay đổi thế giới, còn Nguyễn Ngọc Gia Phúc được sinh ra để tạo ra điều kỳ diệu - Copyright © 2026 by Nguyễn Ngọc Gia Phúc..")
