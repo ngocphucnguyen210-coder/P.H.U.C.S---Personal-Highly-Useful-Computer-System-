@@ -316,7 +316,7 @@ uid = user["user_id"]
 with st.sidebar:
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), use_container_width=True)
-    st.markdown("<div style='text-align:center' class='brand'>🌸P.H.U.C.S🌸</div>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align:center' class='brand'>🌸P.H.U.C.S</div>", unsafe_allow_html=True)
     st.caption("Đồng hành cùng P.H.U.C.S, vững bước thành công")
     st.divider()
     avatar_file = st.file_uploader("🖼️ Ảnh đại diện (tùy chọn)", type=["png", "jpg", "jpeg", "webp"], key="user_avatar")
