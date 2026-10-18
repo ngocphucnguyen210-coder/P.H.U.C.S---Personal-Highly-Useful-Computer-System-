@@ -415,7 +415,7 @@ with st.sidebar:
         st.caption("Tùy chọn giọng đọc cần tích hợp dịch vụ Text-to-Speech.")
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
-        st.write("P.H.U.C.S Alpha 1")
+        st.write("P.H.U.C.S AlphaOS 2")
         st.caption("Bản khởi đầu. Các bản sau sẽ bổ sung đăng nhập, đồng bộ và công cụ nâng cao.")
 
     st.divider()
@@ -469,7 +469,7 @@ st.markdown(f"""
       </div>
     </div>
     <div style="text-align:center;min-width:125px;padding:10px 14px;background:rgba(255,255,255,.65);border:1px solid #f8d5e5;border-radius:22px">
-      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">Alpha 2 · Learning buddy</div>
+      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">AlphaOS 2 · Learning buddy</div>
     </div>
   </div>
 </div>
@@ -1235,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("P.H.U.C.S Alpha 2 · Một số tích hợp cần khóa API, cấu hình nhà cung cấp, chính sách bảo mật và kiểm thử trước khi mở cho công chúng.")
+st.caption(P.H.U.C.S AI — Định hình tương lai, kiến tạo giá trị.")
