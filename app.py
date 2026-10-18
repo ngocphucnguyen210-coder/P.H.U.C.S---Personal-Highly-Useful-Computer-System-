@@ -1235,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("💌P.H.U.C.S Al: Thông minh, tiên phong và khác biệt. Tự hào là minh chứng cho tư duy đột phá của Nguyễn Ngọc Gia Phúc.")
+st.caption("💡Các AI khác có thể trả lời bạn, nhưng chỉ có P.H.U.C.S mới thực sự hiểu bạn.")
