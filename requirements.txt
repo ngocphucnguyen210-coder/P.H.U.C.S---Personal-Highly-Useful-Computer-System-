@@ -1,0 +1,15 @@
+streamlit>=1.40.0
+openai>=1.50.0
+python-dotenv>=1.0.1
+pandas>=2.2.0
+numpy>=1.26.0
+requests>=2.32.0
+supabase>=2.10.0
+stripe>=11.0.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+streamlit-autorefresh>=1.0.1
+streamlit-quill>=0.0.3
+plotly>=5.24.0
+Pillow>=10.0.0
+bleach>=6.1.0
