@@ -416,7 +416,7 @@ with st.sidebar:
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
         st.write("P.H.U.C.S AlphaOS 2")
-        st.caption("Đây là phiên bản AlphaOS thế hệ thứ 2. Đã chỉnh sửa và phát triển các lỗi, các tính năng của AlphaOS thế hệ thứ 1")
+        st.caption("Kế thừa từ AlphaOS Gen 1, NGUYỄN NGỌC GIA PHÚC chính thức ra mắt AlphaOS Gen 2. Phiên bản này tập trung tối ưu hệ thống, xử lý triệt để các lỗi vặt và nâng cấp toàn diện tính năng để mang lại hiệu suất tối đa.")
 
     st.divider()
     st.markdown("**🔎 Tìm lịch sử chat**")
