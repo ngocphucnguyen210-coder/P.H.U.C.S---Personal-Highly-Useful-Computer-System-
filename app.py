@@ -1235,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("💡AI khác cho bạn đáp án, P.H.U.C.S trao cho bạn sự thấu hiểu - Ngưng làng phí thời gian cho các AI dỏm khác. DÙNG P.H.U.C.S 😍.")
+st.caption("💡AI khác cho bạn đáp án, P.H.U.C.S trao cho bạn sự thấu hiểu - Ngưng làng phí thời gian cho các AI dỏm khác,dùng P.H.U.C.S ngay 😍.")
