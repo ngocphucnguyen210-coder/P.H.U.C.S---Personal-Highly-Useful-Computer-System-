@@ -508,7 +508,7 @@ def render_chat_content(content):
 
 # ---------- Chat ----------
 with pages[0]:
-    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Cloudy Chat ☁️</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Trạm Học Tập P.H.U.C.S</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
     st.caption("💗 Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
     # Streamlit Cloud Secrets first, then environment/.env for local development.
     def setting(name, default=""):
