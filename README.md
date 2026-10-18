@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/33630859/README.md)
+[README.md](https://github.com/user-attachments/files/33631264/README.md)
 # P.H.U.C.S AI — AlphaOS 2 (Streamlit + Groq)
 
 **P.H.U.C.S — Personal Highly Useful Computer System**  
