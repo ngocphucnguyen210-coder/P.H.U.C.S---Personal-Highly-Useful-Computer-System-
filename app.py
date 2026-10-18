@@ -475,7 +475,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-pages = st.tabs(["💬 Cơ bản", "⏱️ Đồng hồ học", "📅 Lịch & Sự kiện", "✅ To-do List",
+pages = st.tabs(["💬 Chatbot AI", "⏱️ Đồng hồ học", "📅 Lịch & Sự kiện", "✅ To-do List",
                  "📝 Note & Studio", "📊 Biểu đồ", "🎮 Giải trí", "🧪 Phòng thí nghiệm",
                  "🌐 Web & Media AI", "👥 Nhóm & Gọi", "☁️ Plus & Cloud"])
 
