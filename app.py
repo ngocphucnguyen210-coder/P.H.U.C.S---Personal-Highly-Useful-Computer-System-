@@ -369,7 +369,7 @@ with st.sidebar:
         st.caption("Tùy chọn giọng đọc cần tích hợp dịch vụ Text-to-Speech.")
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
-        st.write("P.H.U.C.S Alpha 1")
+        st.write("P.H.U.C.S AlphaOS 2")
         st.caption("Bản khởi đầu. Các bản sau sẽ bổ sung đăng nhập, đồng bộ và công cụ nâng cao.")
 
     st.divider()
