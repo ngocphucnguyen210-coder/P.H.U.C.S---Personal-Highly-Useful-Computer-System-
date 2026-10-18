@@ -113,6 +113,43 @@ def inject_css():
     .stTabs [aria-selected="true"] { color:#fff!important; }
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] label, [data-testid="stSidebar"] .stMarkdown { color:#48263a; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+    /* Contrast reset: explicitly style all common Streamlit widgets in light theme. */
+    [data-testid="stAppViewContainer"] { color:#30202a!important; }
+    [data-testid="stAppViewContainer"] p,[data-testid="stAppViewContainer"] li,
+    [data-testid="stAppViewContainer"] label,[data-testid="stAppViewContainer"] .stMarkdown,
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] { color:#30202a; }
+    [data-testid="stTextInput"] input,[data-testid="stNumberInput"] input,
+    [data-testid="stTextArea"] textarea,[data-testid="stChatInput"] textarea,
+    [data-testid="stDateInput"] input,[data-testid="stTimeInput"] input {
+      background:#fff!important;color:#30202a!important;-webkit-text-fill-color:#30202a!important;
+      border:1.5px solid #d58bad!important; caret-color:#a82f62!important;
+    }
+    input::placeholder,textarea::placeholder { color:#705565!important;opacity:1!important; }
+    [data-baseweb="select"] > div,[data-baseweb="popover"] [role="listbox"],
+    [data-baseweb="menu"], [data-testid="stSelectbox"] [data-baseweb="select"] > div {
+      background:#fff!important;color:#30202a!important;border-color:#d58bad!important;
+    }
+    [data-baseweb="popover"] *,[role="option"], [role="listbox"] * { color:#30202a!important; }
+    [data-testid="stCheckbox"] label,[data-testid="stRadio"] label,
+    [data-testid="stToggle"] label,[data-testid="stSlider"] label { color:#30202a!important; }
+    [data-testid="stExpander"] summary,[data-testid="stExpander"] summary p,
+    [data-testid="stMetric"] label,[data-testid="stMetric"] [data-testid="stMetricValue"] { color:#30202a!important; }
+    [data-testid="stFileUploader"] section,[data-testid="stFileUploader"] section * { color:#30202a!important; }
+    [data-testid="stChatMessage"] { border-radius:20px!important; padding:1rem 1.1rem!important; margin:.65rem 0!important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) { background:#fff!important;border:1px solid #efbfd5!important;box-shadow:0 7px 20px rgba(150,50,95,.08)!important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) { background:linear-gradient(135deg,#ffe0ef,#f7e7ff)!important;border:1px solid #e7a9c8!important; }
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] { color:#30202a!important;line-height:1.72; }
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li,
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] code { color:#30202a!important; }
+    [data-testid="stChatInput"] { border-radius:22px!important;background:#fff!important; }
+    [data-testid="stChatInput"] textarea { border-radius:18px!important; }
+    [data-testid="stChatInput"] button { background:#df2f8b!important;color:#fff!important;border-radius:14px!important; }
+    [data-testid="stAlert"] p,[data-testid="stAlert"] li { color:#30202a!important; }
+    /* Keep math and code readable even on a custom background. */
+    [data-testid="stMarkdownContainer"] .katex, .katex-display { color:#30202a!important; }
+    [data-testid="stMarkdownContainer"] pre { background:#fff!important;border:1px solid #efd0df!important;border-radius:12px; }
+    [data-testid="stMarkdownContainer"] code { color:#8f2854; }
     @media (max-width: 760px) { .welcome-hero {padding:1.2rem;} .hero {padding:1.2rem;} .stTabs [data-baseweb="tab"] {padding:7px 9px;} }
     </style>
     """, unsafe_allow_html=True)
@@ -196,7 +233,7 @@ def login_screen():
         if logo:
             st.image(logo, width=220)
     with right:
-        st.markdown("### 😍Chào mừng bạn đến với P.H.U.C.S")
+        st.markdown("### Chào mừng bạn đến với P.H.U.C.S")
         st.write("Đăng nhập để bắt đầu hành trình chinh phục tri thức.")
         name = st.text_input("Tên hiển thị", placeholder="Ví dụ: Minh Anh")
         if st.button("✨ Tiếp tục với tài khoản khách", type="primary", use_container_width=True):
@@ -294,47 +331,16 @@ with st.sidebar:
         st.rerun()
 
     st.divider()
-    language_options = ["Tiếng Việt", "English", "한국어", "Français", "Deutsch", "日本語", "Español", "Русский", "中文", "ไทย", "Português", "Italiano"]
-    language = st.selectbox("🌐 Language / Ngôn ngữ", language_options, key="ui_language")
-    theme = st.selectbox(("🎨 Giao diện & Hình nền"), [
+    language = st.selectbox("🌐 Ngôn ngữ", [
+        "Tiếng Việt", "English", "한국어", "Français", "Deutsch", "日本語",
+        "Español", "Русский", "中文", "ไทย", "Português", "Italiano"
+    ])
+    theme = st.selectbox("🎨 Giao diện & Hình nền", [
         "Hồng mộng mơ (động)", "Dải ngân hà hồng (động)", "Sóng biển pastel (động)",
         "Cực quang tím hồng (động)", "Bình minh đào (động)", "Mây trôi xanh hồng (động)",
         "Hoa anh đào (tĩnh)", "Bầu trời xanh (tĩnh)", "Hoàng hôn tím (tĩnh)",
         "Giấy kem tối giản (tĩnh)", "Dark mode hồng đêm"
     ])
-    # Interface translations are local/static and do not consume API tokens.
-    _LANG_CODE = {"Tiếng Việt":"vi", "English":"en", "한국어":"ko", "Français":"fr", "Deutsch":"de", "日本語":"ja", "Español":"es", "Русский":"ru", "中文":"zh", "ไทย":"th", "Português":"pt", "Italiano":"it"}
-    _UI_LANG = _LANG_CODE.get(language, "vi")
-    _I18N = {
-      "Xin chào, {name}!": {"en":"Hello, {name}!", "ko":"안녕하세요, {name}님!", "fr":"Bonjour, {name} !", "de":"Hallo, {name}!", "ja":"こんにちは、{name}さん！", "es":"¡Hola, {name}!", "ru":"Здравствуйте, {name}!", "zh":"你好，{name}！", "th":"สวัสดี {name}!", "pt":"Olá, {name}!", "it":"Ciao, {name}!"},
-      "Mình là P.H.U.C.S AI — luôn sẵn sàng hỗ trợ bạn học tập, khám phá và chinh phục mọi ước mơ!": {"en":"I'm P.H.U.C.S AI — ready to help you learn, explore, and reach your dreams!", "ko":"저는 P.H.U.C.S AI입니다. 학습과 탐구, 꿈의 실현을 도와드릴게요!", "fr":"Je suis P.H.U.C.S AI, prêt à vous aider à apprendre, explorer et réaliser vos rêves !", "de":"Ich bin P.H.U.C.S AI und helfe dir beim Lernen, Entdecken und Erreichen deiner Ziele!", "ja":"P.H.U.C.S AIです。学習や探究、夢の実現をお手伝いします！", "es":"Soy P.H.U.C.S AI: ¡te ayudo a aprender, explorar y alcanzar tus sueños!", "ru":"Я P.H.U.C.S AI — помогу учиться, исследовать и достигать мечты!", "zh":"我是 P.H.U.C.S AI，随时帮助你学习、探索并实现梦想！", "th":"ฉันคือ P.H.U.C.S AI พร้อมช่วยให้คุณเรียนรู้ สำรวจ และไปถึงความฝัน!", "pt":"Sou o P.H.U.C.S AI — pronto para ajudar você a aprender, explorar e realizar seus sonhos!", "it":"Sono P.H.U.C.S AI, pronto ad aiutarti a imparare, esplorare e realizzare i tuoi sogni!"},
-      "✦ Học tập thông minh": {"en":"✦ Smart learning", "ko":"✦ 스마트 학습", "fr":"✦ Apprentissage intelligent", "de":"✦ Intelligentes Lernen", "ja":"✦ スマート学習", "es":"✦ Aprendizaje inteligente", "ru":"✦ Умное обучение", "zh":"✦ 智能学习", "th":"✦ เรียนรู้อย่างชาญฉลาด", "pt":"✦ Aprendizagem inteligente", "it":"✦ Apprendimento intelligente"},
-      "🔎 Tìm kiếm kiến thức": {"en":"🔎 Explore knowledge", "ko":"🔎 지식 탐색", "fr":"🔎 Explorer les connaissances", "de":"🔎 Wissen entdecken", "ja":"🔎 知識を探す", "es":"🔎 Explorar conocimientos", "ru":"🔎 Поиск знаний", "zh":"🔎 探索知识", "th":"🔎 ค้นหาความรู้", "pt":"🔎 Explorar conhecimentos", "it":"🔎 Esplora le conoscenze"},
-      "🪄 Sáng tạo nội dung": {"en":"🪄 Create content", "ko":"🪄 콘텐츠 만들기", "fr":"🪄 Créer du contenu", "de":"🪄 Inhalte erstellen", "ja":"🪄 コンテンツ作成", "es":"🪄 Crear contenido", "ru":"🪄 Создание контента", "zh":"🪄 创作内容", "th":"🪄 สร้างเนื้อหา", "pt":"🪄 Criar conteúdo", "it":"🪄 Crea contenuti"},
-      "♡ Đồng hành 24/7": {"en":"♡ Here for you 24/7", "ko":"♡ 24시간 함께", "fr":"♡ À vos côtés 24 h/24", "de":"♡ Rund um die Uhr für dich da", "ja":"♡ いつでもサポート", "es":"♡ Contigo 24/7", "ru":"♡ Рядом 24/7", "zh":"♡ 全天候陪伴", "th":"♡ อยู่เคียงข้าง 24/7", "pt":"♡ Com você 24/7", "it":"♡ Con te 24/7"},
-      "💬 Cơ bản": {"en":"💬 Chat", "ko":"💬 채팅", "fr":"💬 Discussion", "de":"💬 Chat", "ja":"💬 チャット", "es":"💬 Chat", "ru":"💬 Чат", "zh":"💬 聊天", "th":"💬 แชต", "pt":"💬 Conversa", "it":"💬 Chat"},
-      "⏱️ Đồng hồ học": {"en":"⏱️ Study timer", "ko":"⏱️ 학습 타이머", "fr":"⏱️ Minuteur d’étude", "de":"⏱️ Lerntimer", "ja":"⏱️ 学習タイマー", "es":"⏱️ Temporizador de estudio", "ru":"⏱️ Учебный таймер", "zh":"⏱️ 学习计时器", "th":"⏱️ ตัวจับเวลาเรียน", "pt":"⏱️ Temporizador de estudo", "it":"⏱️ Timer di studio"},
-      "📅 Lịch & Sự kiện": {"en":"📅 Calendar & Events", "ko":"📅 일정 및 이벤트", "fr":"📅 Calendrier et événements", "de":"📅 Kalender & Termine", "ja":"📅 カレンダーと予定", "es":"📅 Calendario y eventos", "ru":"📅 Календарь и события", "zh":"📅 日历与活动", "th":"📅 ปฏิทินและกิจกรรม", "pt":"📅 Calendário e eventos", "it":"📅 Calendario ed eventi"},
-      "✅ To-do List": {"en":"✅ To-do List", "ko":"✅ 할 일 목록", "fr":"✅ Liste de tâches", "de":"✅ Aufgabenliste", "ja":"✅ To-doリスト", "es":"✅ Lista de tareas", "ru":"✅ Список задач", "zh":"✅ 待办事项", "th":"✅ รายการสิ่งที่ต้องทำ", "pt":"✅ Lista de tarefas", "it":"✅ Lista delle cose da fare"},
-      "📝 Note & Studio": {"en":"📝 Notes & Studio", "ko":"📝 노트 및 스튜디오", "fr":"📝 Notes et studio", "de":"📝 Notizen & Studio", "ja":"📝 ノートとスタジオ", "es":"📝 Notas y estudio", "ru":"📝 Заметки и студия", "zh":"📝 笔记与工作室", "th":"📝 โน้ตและสตูดิโอ", "pt":"📝 Notas e estúdio", "it":"📝 Note e studio"},
-      "📊 Biểu đồ": {"en":"📊 Charts", "ko":"📊 차트", "fr":"📊 Graphiques", "de":"📊 Diagramme", "ja":"📊 グラフ", "es":"📊 Gráficos", "ru":"📊 Диаграммы", "zh":"📊 图表", "th":"📊 แผนภูมิ", "pt":"📊 Gráficos", "it":"📊 Grafici"},
-      "🎮 Giải trí": {"en":"🎮 Entertainment", "ko":"🎮 엔터테인먼트", "fr":"🎮 Divertissement", "de":"🎮 Unterhaltung", "ja":"🎮 エンタメ", "es":"🎮 Entretenimiento", "ru":"🎮 Развлечения", "zh":"🎮 娱乐", "th":"🎮 ความบันเทิง", "pt":"🎮 Entretenimento", "it":"🎮 Intrattenimento"},
-      "🧪 Phòng thí nghiệm": {"en":"🧪 Lab", "ko":"🧪 실험실", "fr":"🧪 Laboratoire", "de":"🧪 Labor", "ja":"🧪 ラボ", "es":"🧪 Laboratorio", "ru":"🧪 Лаборатория", "zh":"🧪 实验室", "th":"🧪 ห้องทดลอง", "pt":"🧪 Laboratório", "it":"🧪 Laboratorio"},
-      "🌐 Web & Media AI": {"en":"🌐 Web & AI Media", "ko":"🌐 웹 및 AI 미디어", "fr":"🌐 Web et médias IA", "de":"🌐 Web & KI-Medien", "ja":"🌐 Web・AIメディア", "es":"🌐 Web y medios de IA", "ru":"🌐 Веб и ИИ-медиа", "zh":"🌐 网页与 AI 媒体", "th":"🌐 เว็บและสื่อ AI", "pt":"🌐 Web e mídia de IA", "it":"🌐 Web e media IA"},
-      "👥 Nhóm & Gọi": {"en":"👥 Groups & Calls", "ko":"👥 그룹 및 통화", "fr":"👥 Groupes et appels", "de":"👥 Gruppen & Anrufe", "ja":"👥 グループと通話", "es":"👥 Grupos y llamadas", "ru":"👥 Группы и звонки", "zh":"👥 群组与通话", "th":"👥 กลุ่มและการโทร", "pt":"👥 Grupos e chamadas", "it":"👥 Gruppi e chiamate"},
-      "☁️ Plus & Cloud": {"en":"☁️ Plus & Cloud", "ko":"☁️ Plus 및 클라우드", "fr":"☁️ Plus et cloud", "de":"☁️ Plus & Cloud", "ja":"☁️ Plusとクラウド", "es":"☁️ Plus y nube", "ru":"☁️ Plus и облако", "zh":"☁️ Plus 与云端", "th":"☁️ Plus และคลาวด์", "pt":"☁️ Plus e nuvem", "it":"☁️ Plus e cloud"},
-      "Hộp thư P.H.U.C.S": {"en":"P.H.U.C.S Inbox", "ko":"P.H.U.C.S 받은편지함", "fr":"Boîte de réception P.H.U.C.S", "de":"P.H.U.C.S Postfach", "ja":"P.H.U.C.S 受信箱", "es":"Bandeja de P.H.U.C.S", "ru":"Почта P.H.U.C.S", "zh":"P.H.U.C.S 收件箱", "th":"กล่องข้อความ P.H.U.C.S", "pt":"Caixa de entrada P.H.U.C.S", "it":"Posta in arrivo P.H.U.C.S"},
-      "Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨": {"en":"A cozy little space to ask questions, share thoughts, and learn together ✨", "ko":"질문하고 이야기하며 함께 성장하는 아늑한 공간 ✨", "fr":"Un petit espace chaleureux pour poser des questions et apprendre ensemble ✨", "de":"Ein gemütlicher Ort für Fragen, Austausch und gemeinsames Lernen ✨", "ja":"質問やおしゃべりをしながら、一緒に学ぶ小さな空間 ✨", "es":"Un rincón acogedor para preguntar, compartir y aprender juntos ✨", "ru":"Уютное место, чтобы задавать вопросы и учиться вместе ✨", "zh":"一个可以提问、分享心情、一起学习的小天地 ✨", "th":"พื้นที่น่ารักสำหรับถามคำถาม พูดคุย และเรียนรู้ไปด้วยกัน ✨", "pt":"Um cantinho acolhedor para perguntar, conversar e aprender juntos ✨", "it":"Un piccolo spazio accogliente per fare domande e imparare insieme ✨"},
-      "● AI đồng hành": {"en":"● AI companion", "ko":"● AI 학습 파트너", "fr":"● Compagnon IA", "de":"● KI-Begleiter", "ja":"● AIパートナー", "es":"● Compañero de IA", "ru":"● ИИ-помощник", "zh":"● AI 学习伙伴", "th":"● ผู้ช่วย AI", "pt":"● Companheiro de IA", "it":"● Compagno IA"},
-      "💗 Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.": {"en":"💗 Ask about math, literature, English, sciences, languages, skills, and everyday knowledge.", "ko":"💗 수학, 문학, 영어, 과학, 외국어, 기술 및 생활 지식을 질문하세요.", "fr":"💗 Posez des questions sur les maths, la littérature, les sciences, les langues et la vie quotidienne.", "de":"💗 Fragen zu Mathe, Literatur, Sprachen, Naturwissenschaften und Alltagswissen.", "ja":"💗 数学、文学、英語、理科、外国語、スキル、日常知識について質問できます。", "es":"💗 Pregunta sobre matemáticas, literatura, ciencias, idiomas y conocimientos cotidianos.", "ru":"💗 Спрашивайте о математике, литературе, науках, языках и повседневных знаниях.", "zh":"💗 可询问数学、文学、英语、科学、外语、技能和生活知识。", "th":"💗 ถามเรื่องคณิตศาสตร์ วรรณคดี วิทยาศาสตร์ ภาษา และความรู้ในชีวิตประจำวัน", "pt":"💗 Pergunte sobre matemática, literatura, ciências, idiomas e conhecimentos do dia a dia.", "it":"💗 Chiedi di matematica, letteratura, scienze, lingue e conoscenze quotidiane."},
-      "📷 Đính kèm ảnh bài tập (tùy chọn)": {"en":"📷 Attach exercise image (optional)", "ko":"📷 문제 이미지 첨부 (선택)", "fr":"📷 Joindre une image d’exercice (facultatif)", "de":"📷 Aufgabenbild anhängen (optional)", "ja":"📷 問題の画像を添付（任意）", "es":"📷 Adjuntar imagen del ejercicio (opcional)", "ru":"📷 Прикрепить изображение задания (необязательно)", "zh":"📷 附加题目图片（可选）", "th":"📷 แนบรูปโจทย์ (ไม่บังคับ)", "pt":"📷 Anexar imagem do exercício (opcional)", "it":"📷 Allega immagine dell’esercizio (facoltativo)"},
-      "🌐 Tra cứu Internet và đính kèm nguồn khi trả lời": {"en":"🌐 Search the web and cite sources in answers", "ko":"🌐 웹 검색 및 답변에 출처 첨부", "fr":"🌐 Rechercher sur le Web et citer les sources", "de":"🌐 Im Web suchen und Quellen angeben", "ja":"🌐 Web検索して回答に出典を付ける", "es":"🌐 Buscar en Internet e incluir fuentes", "ru":"🌐 Искать в Интернете и указывать источники", "zh":"🌐 搜索网络并在回答中附上来源", "th":"🌐 ค้นหาเว็บและแนบแหล่งอ้างอิง", "pt":"🌐 Pesquisar na Web e citar fontes", "it":"🌐 Cerca sul Web e cita le fonti"},
-      "Nhập câu hỏi hoặc bài tập bạn muốn giải...": {"en":"Enter your question or exercise...", "ko":"질문이나 문제를 입력하세요...", "fr":"Saisissez votre question ou exercice...", "de":"Gib deine Frage oder Aufgabe ein...", "ja":"質問や問題を入力してください...", "es":"Escribe tu pregunta o ejercicio...", "ru":"Введите вопрос или задачу...", "zh":"输入你的问题或练习题...", "th":"พิมพ์คำถามหรือโจทย์ที่ต้องการให้ช่วย...", "pt":"Digite sua pergunta ou exercício...", "it":"Inserisci la domanda o l’esercizio..."},
-      "↪ Đăng xuất": {"en":"↪ Sign out", "ko":"↪ 로그아웃", "fr":"↪ Déconnexion", "de":"↪ Abmelden", "ja":"↪ ログアウト", "es":"↪ Cerrar sesión", "ru":"↪ Выйти", "zh":"↪ 退出登录", "th":"↪ ออกจากระบบ", "pt":"↪ Sair", "it":"↪ Esci"},
-      "🖼️ Ảnh đại diện (tùy chọn)": {"en":"🖼️ Profile picture (optional)", "ko":"🖼️ 프로필 사진 (선택)", "fr":"🖼️ Photo de profil (facultatif)", "de":"🖼️ Profilbild (optional)", "ja":"🖼️ プロフィール画像（任意）", "es":"🖼️ Foto de perfil (opcional)", "ru":"🖼️ Фото профиля (необязательно)", "zh":"🖼️ 头像（可选）", "th":"🖼️ รูปโปรไฟล์ (ไม่บังคับ)", "pt":"🖼️ Foto de perfil (opcional)", "it":"🖼️ Immagine del profilo (facoltativa)"},
-      "🎨 Giao diện & Hình nền": {"en":"🎨 Theme & Background", "ko":"🎨 테마 및 배경", "fr":"🎨 Thème et arrière-plan", "de":"🎨 Design & Hintergrund", "ja":"🎨 テーマと背景", "es":"🎨 Tema y fondo", "ru":"🎨 Тема и фон", "zh":"🎨 主题与背景", "th":"🎨 ธีมและพื้นหลัง", "pt":"🎨 Tema e plano de fundo", "it":"🎨 Tema e sfondo"},
-      "Tải hình nền riêng": {"en":"Upload custom background", "ko":"사용자 지정 배경 업로드", "fr":"Téléverser un arrière-plan personnalisé", "de":"Eigenen Hintergrund hochladen", "ja":"カスタム背景をアップロード", "es":"Subir fondo personalizado", "ru":"Загрузить свой фон", "zh":"上传自定义背景", "th":"อัปโหลดพื้นหลังที่กำหนดเอง", "pt":"Enviar fundo personalizado", "it":"Carica uno sfondo personalizzato"},
-    }
     st.session_state.theme = theme
     if theme == "Dark mode hồng đêm":
         st.markdown("""<style>
@@ -345,6 +351,15 @@ with st.sidebar:
         [data-testid="stChatMessage"] p,[data-testid="stChatMessage"] li {color:#fff5fb!important}
         [data-testid="stChatInput"] textarea {background:#241b2d!important;color:#fff!important;border:1px solid #b66c9b!important}
         [data-testid="stExpander"],[data-testid="stMetric"] {background:#302238!important;color:#fff!important;border-color:#62445f!important}
+        [data-testid="stTextInput"] input,[data-testid="stNumberInput"] input,[data-testid="stTextArea"] textarea,[data-testid="stDateInput"] input,[data-testid="stTimeInput"] input,[data-testid="stChatInput"] textarea {background:#211927!important;color:#fff7fc!important;-webkit-text-fill-color:#fff7fc!important;border-color:#b66c9b!important}
+        [data-baseweb="select"] > div,[data-baseweb="popover"] [role="listbox"],[data-baseweb="menu"] {background:#302238!important;color:#fff7fc!important}
+        [data-baseweb="popover"] *,[role="option"],[role="listbox"] * {color:#fff7fc!important}
+        [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {background:#302238!important;color:#fff7fc!important}
+        [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {background:#57304b!important;color:#fff7fc!important}
+        [data-testid="stChatMessage"] p,[data-testid="stChatMessage"] li,[data-testid="stChatMessage"] code {color:#fff7fc!important}
+        [data-testid="stAppViewContainer"] p,[data-testid="stAppViewContainer"] li,[data-testid="stAppViewContainer"] label,[data-testid="stAppViewContainer"] .stMarkdown,[data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] {color:#f8edf7!important}
+        [data-testid="stMarkdownContainer"] pre {background:#211927!important;border-color:#62445f!important}
+        [data-testid="stMarkdownContainer"] code {color:#ffd4ea!important}
         </style>""", unsafe_allow_html=True)
     bg = st.file_uploader("Tải hình nền riêng", type=["png", "jpg", "jpeg", "webp"], key="bg_upload")
     if bg:
@@ -480,10 +495,21 @@ def _friendly_ai_error(exc):
     return f"Chưa thể kết nối AI: {detail[:700]}. Kiểm tra API key, model, hạn mức và Logs của Streamlit."
 
 
+# Render markdown/math consistently. Streamlit's Markdown renderer supports LaTeX,
+# but some providers return escaped delimiters; normalize only the delimiters, not math symbols.
+def render_chat_content(content):
+    import re
+    text = str(content or "")
+    text = text.replace("\\[", "$$").replace("\\]", "$$")
+    text = text.replace("\\(", "$").replace("\\)", "$")
+    # Convert common display-math delimiters when they arrived as literal escaped text.
+    text = re.sub(r"(?<!\\)\\begin\{(aligned|align|gathered|cases)\}", r"\\begin{\1}", text)
+    st.markdown(text, unsafe_allow_html=False)
+
 # ---------- Chat ----------
 with pages[0]:
-    st.subheader("Trợ lý học tập của bạn")
-    st.caption("Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
+    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Hộp thư P.H.U.C.S</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
+    st.caption("💗 Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
     # Streamlit Cloud Secrets first, then environment/.env for local development.
     def setting(name, default=""):
         try:
@@ -514,8 +540,8 @@ with pages[0]:
             except Exception as check_exc:
                 st.error(_friendly_ai_error(check_exc))
     for message in st.session_state.get("messages", []):
-        with st.chat_message(message["role"], avatar="🎓" if message["role"] == "assistant" else "🙂"):
-            st.markdown(message["content"])
+        with st.chat_message(message["role"], avatar="🎀" if message["role"] == "assistant" else "🌸"):
+            render_chat_content(message["content"])
     uploaded = st.file_uploader("📷 Đính kèm ảnh bài tập (tùy chọn)", type=["png", "jpg", "jpeg", "webp"], key="chat_image")
     if uploaded:
         st.image(uploaded, caption="Ảnh đính kèm sẽ được gửi cho model vision khi bạn đặt câu hỏi.", width=300)
@@ -545,14 +571,16 @@ with pages[0]:
             except Exception as web_exc:
                 st.warning(f"Không tìm được web: {web_exc}")
         st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user", avatar="🙂"):
-            st.markdown(prompt)
+        with st.chat_message("user", avatar="🌸"):
+            render_chat_content(prompt)
             if uploaded: st.image(uploaded, width=220)
         answer = None
         if api_key:
             try:
                 system_prompt = (
                     "Bạn là P.H.U.C.S, trợ lý học tập đa môn, thân thiện và có trách nhiệm. "
+                    "Khi viết công thức Toán/Lý/Hóa, hãy dùng cú pháp LaTeX chuẩn: $...$ cho công thức trong dòng và $$...$$ cho công thức riêng dòng; "
+                    "không đặt công thức trong dấu nháy hoặc code block trừ khi người dùng hỏi về mã nguồn. Giữ nguyên các ký hiệu Unicode như ×, ÷, ≤, ≥, ≠, √, π, ∑, ∫, →, °, Ω và chỉ số dưới/trên khi phù hợp. "
                     "Trả lời bằng ngôn ngữ người dùng đang dùng. Với Toán và khoa học, nêu dữ kiện, "
                     "công thức, đơn vị, các bước suy luận và tự kiểm tra kết quả khi có thể. Với bài trắc nghiệm, "
                     "giải thích vì sao đáp án đúng và vì sao lựa chọn gần đúng có thể sai. Với ngôn ngữ, giải thích "
@@ -573,17 +601,17 @@ with pages[0]:
                             st.info(f"Tự chuyển sang model đang được hỗ trợ: {model_used}")
                         if web_context:
                             answer += "\n\n### Nguồn tham khảo từ tìm kiếm web\n" + "\n".join([f"- [{item.get('title') or 'Nguồn tham khảo'}]({item.get('url')})" for item in web_data.get("results", [])[:5] if item.get("url")])
-                        st.markdown(answer)
+                        render_chat_content(answer)
             except Exception as e:
                 answer = _friendly_ai_error(e)
-                with st.chat_message("assistant", avatar="🎓"):
+                with st.chat_message("assistant", avatar="🎀"):
                     st.error(answer)
         else:
             answer = ("Mình đã nhận được câu hỏi! Để bật AI, hãy tạo khóa Groq tại "
                       "https://console.groq.com/keys rồi thêm `GROQ_API_KEY` vào Streamlit Secrets. "
                       "Sau khi cấu hình, mình sẽ giải thích từng bước và ưu tiên độ chính xác.")
-            with st.chat_message("assistant", avatar="🎓"):
-                st.markdown(answer)
+            with st.chat_message("assistant", avatar="🎀"):
+                render_chat_content(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
         if not st.session_state.get("active_chat"):
             title = prompt[:48] + ("…" if len(prompt) > 48 else "")
@@ -842,6 +870,47 @@ with pages[5]:
 with pages[6]:
     st.subheader("🎮 Góc giải trí lành mạnh")
     st.markdown("<div class='hero'><h3>🌸 Học vui mỗi ngày</h3><p>Chọn một thử thách ngắn để nạp lại năng lượng sau khi học.</p><div style='font-size:2rem;letter-spacing:.25rem'>🧩 🎯 🧠 🚀 🪄 🐼 🌈 🎨</div></div>", unsafe_allow_html=True)
+    with st.expander("🎧 Góc LOFI — nhạc không lời để tập trung", expanded=True):
+        st.markdown("<div class='hero'><h3>☁️ Study café · chill beats</h3><p>Chọn một gợi ý trong 30 playlist/bản nhạc tìm nhanh. Liên kết mở YouTube để phát bản nhạc tương ứng; trình phát radio LOFI bên dưới có thể nghe ngay trong ứng dụng.</p></div>", unsafe_allow_html=True)
+        lofi_tracks = [
+            ("01 · Snowfall — piano lofi", "Snowfall lofi hip hop instrumental piano"),
+            ("02 · Coffee & Rain", "coffee rain lofi chill instrumental"),
+            ("03 · Midnight Library", "midnight library lofi study instrumental"),
+            ("04 · Sakura Dreams", "sakura dreams japanese lofi instrumental"),
+            ("05 · Quiet Morning", "quiet morning lofi instrumental study"),
+            ("06 · Warm Cocoa", "warm cocoa cozy lofi instrumental"),
+            ("07 · Moonlight Walk", "moonlight walk chill lofi instrumental"),
+            ("08 · Cloud Nine", "cloud nine dreamy lofi instrumental"),
+            ("09 · Rainy Window", "rainy window lofi beats no vocals"),
+            ("10 · Blue Hour", "blue hour chillhop instrumental"),
+            ("11 · Study with Cats", "cute cat lofi study beats instrumental"),
+            ("12 · Stardust", "stardust space lofi instrumental"),
+            ("13 · Peach Soda", "peach soda chill lofi instrumental"),
+            ("14 · Autumn Leaves", "autumn leaves mellow lofi instrumental"),
+            ("15 · Sunday Nap", "sunday nap cozy lofi instrumental"),
+            ("16 · City Lights", "city lights night drive lofi instrumental"),
+            ("17 · Ocean Breeze", "ocean breeze chill lofi instrumental"),
+            ("18 · Lavender Sky", "lavender sky lofi piano instrumental"),
+            ("19 · Little Garden", "little garden relaxing lofi instrumental"),
+            ("20 · Train to Somewhere", "train journey lofi instrumental no vocals"),
+            ("21 · Floating Islands", "floating islands fantasy lofi instrumental"),
+            ("22 · Gentle Focus", "gentle focus study lofi instrumental"),
+            ("23 · Soft Rain on Roof", "soft rain on roof lofi instrumental"),
+            ("24 · After School", "after school chillhop lofi instrumental"),
+            ("25 · Paper Planes", "paper planes mellow lofi instrumental"),
+            ("26 · Pink Clouds", "pink clouds dreamy lofi instrumental"),
+            ("27 · Winter Tea", "winter tea cozy lofi instrumental"),
+            ("28 · Dreamy Kyoto", "dreamy kyoto japanese chill lofi instrumental"),
+            ("29 · Deep Work", "deep work focus beats instrumental lofi"),
+            ("30 · Good Night Study", "good night study lofi instrumental calm")
+        ]
+        selected_track = st.selectbox("🎼 Chọn nhạc để mở", [x[0] for x in lofi_tracks], key="lofi_track_choice")
+        query = next(q for title, q in lofi_tracks if title == selected_track)
+        from urllib.parse import quote_plus
+        st.link_button("▶️ Mở bản nhạc đã chọn trên YouTube", "https://www.youtube.com/results?search_query=" + quote_plus(query), use_container_width=True)
+        st.caption("Danh sách gồm 30 gợi ý tìm kiếm, không phải 30 tệp âm thanh được lưu trong ứng dụng. Chọn kết quả phù hợp trên YouTube để nghe.")
+        st.markdown("**📻 Radio LOFI phát ngay trong P.H.U.C.S**")
+        st.components.v1.iframe("https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0", height=230, scrolling=False)
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), width=150, caption="Mascot P.H.U.C.S — chinh phục tri thức")
     games = {
