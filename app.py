@@ -221,7 +221,7 @@ def login_screen():
             st.image(str(LOGO_PATH), use_container_width=True)
         st.markdown("""
         <div class="hero" style="text-align:center;padding:2.1rem 1.2rem">
-          <div class="brand">P.H.U.C.S</div>
+          <div class="brand">🌸P.H.U.C.S🌸</div>
           <div style="font-size:1.1rem;font-weight:800;color:#a82f62;margin:.35rem 0">
             Personal Highly Useful Computer System
           </div>
@@ -316,7 +316,7 @@ uid = user["user_id"]
 with st.sidebar:
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), use_container_width=True)
-    st.markdown("<div style='text-align:center' class='brand'>P.H.U.C.S</div>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align:center' class='brand'>🌸P.H.U.C.S</div>", unsafe_allow_html=True)
     st.caption("Đồng hành cùng P.H.U.C.S, vững bước thành công")
     st.divider()
     avatar_file = st.file_uploader("🖼️ Ảnh đại diện (tùy chọn)", type=["png", "jpg", "jpeg", "webp"], key="user_avatar")
