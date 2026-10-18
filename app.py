@@ -233,7 +233,7 @@ def login_screen():
         if logo:
             st.image(logo, width=220)
     with right:
-        st.markdown("### Chào mừng bạn đến với P.H.U.C.S")
+        st.markdown("### 😍Chào mừng bạn đến với P.H.U.C.S")
         st.write("Đăng nhập để bắt đầu hành trình chinh phục tri thức.")
         name = st.text_input("Tên hiển thị", placeholder="Ví dụ: Minh Anh")
         if st.button("✨ Tiếp tục với tài khoản khách", type="primary", use_container_width=True):
@@ -415,7 +415,7 @@ with st.sidebar:
         st.caption("Tùy chọn giọng đọc cần tích hợp dịch vụ Text-to-Speech.")
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
-        st.write("P.H.U.C.S Alpha 1")
+        st.write("P.H.U.C.S AlphaOS 2")
         st.caption("Bản khởi đầu. Các bản sau sẽ bổ sung đăng nhập, đồng bộ và công cụ nâng cao.")
 
     st.divider()
@@ -469,7 +469,7 @@ st.markdown(f"""
       </div>
     </div>
     <div style="text-align:center;min-width:125px;padding:10px 14px;background:rgba(255,255,255,.65);border:1px solid #f8d5e5;border-radius:22px">
-      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">Alpha 2 · Learning buddy</div>
+      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">AlphaOS 2 · Learning buddy</div>
     </div>
   </div>
 </div>
@@ -508,7 +508,7 @@ def render_chat_content(content):
 
 # ---------- Chat ----------
 with pages[0]:
-    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Hộp thư P.H.U.C.S</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Cloudy Chat ☁️</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
     st.caption("💗 Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
     # Streamlit Cloud Secrets first, then environment/.env for local development.
     def setting(name, default=""):
@@ -1235,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("P.H.U.C.S Alpha 2 · Một số tích hợp cần khóa API, cấu hình nhà cung cấp, chính sách bảo mật và kiểm thử trước khi mở cho công chúng.")
+st.caption("💌P.H.U.C.S Al: Thông minh, tiên phong và khác biệt. Tự hào là minh chứng cho tư duy đột phá của Nguyễn Ngọc Gia Phúc.")
