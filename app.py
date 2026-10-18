@@ -66,23 +66,54 @@ def inject_css():
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
-    html, body, [class*="css"] { font-family: 'Be Vietnam Pro', sans-serif; }
-    .stApp { background: linear-gradient(135deg,#fff8fb 0%,#fff1f7 48%,#fff9fc 100%); }
-    [data-testid="stSidebar"] { background: linear-gradient(180deg,#ffe7f0 0%,#fff4f8 100%); border-right:1px solid #f5c8da; }
-    h1,h2,h3 { color:#8f2854; font-family:'Nunito','Be Vietnam Pro',sans-serif; }
-    .hero { padding:1.3rem 1.5rem; border:1px solid #f4c5d8; border-radius:24px;
-            background:linear-gradient(120deg,rgba(255,255,255,.95),rgba(255,228,239,.92));
-            box-shadow:0 12px 34px rgba(177,56,106,.09); }
-    .brand { font-family:'Nunito',sans-serif; font-weight:900; letter-spacing:.04em;
-             font-size:clamp(2rem,5vw,3.8rem); color:#d94f83; line-height:1.05; }
-    .slogan { color:#8f2854; font-weight:600; font-size:1.03rem; }
-    .small-muted { color:#8e6a7a; font-size:.9rem; }
-    div.stButton > button { border-radius:14px; border:1px solid #efb5cc; font-weight:700; }
-    div.stButton > button[kind="primary"] { background:#d94f83; color:white; border:0; }
-    [data-testid="stMetric"] { background:#fff; padding:1rem; border:1px solid #f4d0df; border-radius:18px; }
-    .stTabs [data-baseweb="tab-list"] { gap:8px; }
-    .stTabs [data-baseweb="tab"] { background:#ffe8f1; border-radius:12px 12px 0 0; padding:10px 16px; }
-    .stTabs [aria-selected="true"] { background:#d94f83 !important; color:white !important; }
+    :root { --phucs-pink:#ec4899; --phucs-hot:#d92f87; --phucs-deep:#8f2854; --phucs-pale:#fff3f8; --phucs-line:#f7c9df; }
+    html, body, [class*="css"] { font-family:'Be Vietnam Pro',sans-serif; }
+    .stApp { background:radial-gradient(ellipse at 12% 5%,rgba(255,211,231,.62),transparent 33%),radial-gradient(ellipse at 92% 18%,rgba(255,226,240,.72),transparent 28%),linear-gradient(135deg,#fff9fc 0%,#fff0f7 48%,#fffafd 100%); color:#52253e; }
+    [data-testid="stHeader"] { background:rgba(255,248,252,.76); }
+    [data-testid="stSidebar"] { background:linear-gradient(180deg,#ffe5f1 0%,#fff3f8 55%,#fffafd 100%); border-right:1px solid #f5c4da; }
+    [data-testid="stSidebar"] > div:first-child { padding-top:1.1rem; }
+    [data-testid="stSidebar"] [data-testid="stImage"] img { border-radius:22px; }
+    h1,h2,h3 { color:var(--phucs-deep); font-family:'Nunito','Be Vietnam Pro',sans-serif; font-weight:850; }
+    h1 { letter-spacing:-.035em; }
+    .hero { position:relative; overflow:hidden; padding:1.6rem 1.8rem; border:1px solid rgba(244,174,205,.8); border-radius:28px;
+      background:linear-gradient(112deg,rgba(255,255,255,.94),rgba(255,226,240,.86)),radial-gradient(circle at 88% 15%,#ffd2e7,transparent 35%);
+      box-shadow:0 14px 38px rgba(177,56,106,.10); }
+    .welcome-hero { position:relative; overflow:hidden; padding:1.7rem 1.8rem; margin:.3rem 0 1.1rem; border:1px solid #f4bfd7; border-radius:28px;
+      background:linear-gradient(110deg,rgba(255,255,255,.97) 0%,rgba(255,240,247,.94) 52%,rgba(255,219,237,.84) 100%);
+      box-shadow:0 12px 32px rgba(177,56,106,.09); }
+    .welcome-hero:after { content:'♡'; position:absolute; right:5%; top:-35px; font-size:170px; line-height:1; color:rgba(236,72,153,.09); transform:rotate(15deg); pointer-events:none; }
+    .brand { font-family:'Nunito',sans-serif; font-weight:900; letter-spacing:.035em; font-size:clamp(2rem,5vw,3.5rem); color:#d93687; line-height:1.05; }
+    .slogan { color:#8f2854; font-weight:700; font-size:1rem; }
+    .small-muted { color:#986d83; font-size:.9rem; }
+    div.stButton > button, .stLinkButton a { border-radius:16px; border:1px solid #f1b6d0; font-weight:700; transition:all .18s ease; }
+    div.stButton > button:hover, .stLinkButton a:hover { border-color:#e879ae; color:#a82f62; box-shadow:0 5px 16px rgba(217,47,135,.12); transform:translateY(-1px); }
+    div.stButton > button[kind="primary"] { background:linear-gradient(135deg,#f472b6,#df2f8b); color:white; border:0; box-shadow:0 6px 18px rgba(217,47,135,.18); }
+    [data-testid="stMetric"] { background:rgba(255,255,255,.86); padding:1rem; border:1px solid #f4d0df; border-radius:20px; box-shadow:0 5px 18px rgba(177,56,106,.045); }
+    [data-testid="stExpander"] { border:1px solid #f5c9dc; border-radius:16px; background:rgba(255,255,255,.72); }
+    [data-testid="stChatMessage"] { background:rgba(255,255,255,.78); border:1px solid #f7d6e5; border-radius:18px; padding:.85rem 1rem; }
+    [data-testid="stChatInput"] textarea { border-radius:22px!important; border-color:#f1b6d0!important; background:rgba(255,255,255,.92)!important; }
+    .stTabs [data-baseweb="tab-list"] { gap:7px; padding:7px; border:1px solid #f6c8dc; border-radius:19px; background:rgba(255,255,255,.72); flex-wrap:wrap; }
+    .stTabs [data-baseweb="tab"] { background:#fff0f7; border:1px solid #f8d5e5; border-radius:14px; padding:9px 14px; color:#8f2854; }
+    .stTabs [aria-selected="true"] { background:linear-gradient(135deg,#f472b6,#df2f8b)!important; color:white!important; border-color:#df2f8b!important; }
+    [data-testid="stFileUploader"] section { background:rgba(255,255,255,.68); border:1px dashed #e9a9c7; border-radius:16px; }
+    input, textarea, [data-baseweb="select"] > div { border-radius:13px!important; }
+    hr { border-color:#f3c8db!important; }
+    /* High contrast: keep all text readable over translucent/animated backgrounds. */
+    [data-testid="stAppViewContainer"] { color:#3f2634; }
+    [data-testid="stAppViewContainer"] p, [data-testid="stAppViewContainer"] li,
+    [data-testid="stAppViewContainer"] label, [data-testid="stAppViewContainer"] .stMarkdown,
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] { color:#49313f; }
+    [data-testid="stChatMessage"] { background:#ffffff!important; border:1px solid #e6a9c5!important; box-shadow:0 5px 18px rgba(80,32,57,.08); color:#30202a!important; }
+    [data-testid="stChatMessage"] p, [data-testid="stChatMessage"] li, [data-testid="stChatMessage"] span { color:#30202a!important; }
+    [data-testid="stChatInput"] textarea, [data-testid="stChatInput"] textarea:focus { background:#ffffff!important; color:#30202a!important; -webkit-text-fill-color:#30202a!important; border:1.5px solid #cc6d9b!important; }
+    [data-testid="stChatInput"] textarea::placeholder { color:#765969!important; opacity:1!important; }
+    [data-testid="stExpander"], [data-testid="stMetric"], [data-testid="stFileUploader"] section { background:rgba(255,255,255,.96)!important; color:#30202a!important; }
+    [data-baseweb="select"] *, input, textarea { color:#30202a; }
+    .stTabs [data-baseweb="tab"] { color:#702449!important; font-weight:700; }
+    .stTabs [aria-selected="true"] { color:#fff!important; }
+    [data-testid="stSidebar"] p, [data-testid="stSidebar"] label, [data-testid="stSidebar"] .stMarkdown { color:#48263a; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+    @media (max-width: 760px) { .welcome-hero {padding:1.2rem;} .hero {padding:1.2rem;} .stTabs [data-baseweb="tab"] {padding:7px 9px;} }
     </style>
     """, unsafe_allow_html=True)
 
@@ -267,12 +298,23 @@ with st.sidebar:
         "Tiếng Việt", "English", "한국어", "Français", "Deutsch", "日本語",
         "Español", "Русский", "中文", "ไทย", "Português", "Italiano"
     ])
-    theme = st.selectbox("🎨 Giao diện", ["Hồng mộng mơ", "Dải ngân hà hồng", "Sóng biển hồng", "Dark mode hồng đêm"])
+    theme = st.selectbox("🎨 Giao diện & Hình nền", [
+        "Hồng mộng mơ (động)", "Dải ngân hà hồng (động)", "Sóng biển pastel (động)",
+        "Cực quang tím hồng (động)", "Bình minh đào (động)", "Mây trôi xanh hồng (động)",
+        "Hoa anh đào (tĩnh)", "Bầu trời xanh (tĩnh)", "Hoàng hôn tím (tĩnh)",
+        "Giấy kem tối giản (tĩnh)", "Dark mode hồng đêm"
+    ])
     st.session_state.theme = theme
     if theme == "Dark mode hồng đêm":
-        st.markdown("""<style>.stApp{background:linear-gradient(135deg,#211725,#342033)!important;color:#fff}
-        h1,h2,h3,p,label{color:#ffe5f0!important} [data-testid="stSidebar"]{background:#281b2b!important}</style>""",
-                    unsafe_allow_html=True)
+        st.markdown("""<style>
+        [data-testid="stAppViewContainer"], .stApp {background:linear-gradient(135deg,#171321,#2b2036 55%,#241a2b)!important;color:#f8edf7!important}
+        [data-testid="stSidebar"] {background:linear-gradient(180deg,#241b2d,#302238)!important}
+        h1,h2,h3,h4,p,label,span,li,.stMarkdown {color:inherit}
+        [data-testid="stChatMessage"] {background:#34263d!important;border:1px solid #62445f!important;color:#fff5fb!important}
+        [data-testid="stChatMessage"] p,[data-testid="stChatMessage"] li {color:#fff5fb!important}
+        [data-testid="stChatInput"] textarea {background:#241b2d!important;color:#fff!important;border:1px solid #b66c9b!important}
+        [data-testid="stExpander"],[data-testid="stMetric"] {background:#302238!important;color:#fff!important;border-color:#62445f!important}
+        </style>""", unsafe_allow_html=True)
     bg = st.file_uploader("Tải hình nền riêng", type=["png", "jpg", "jpeg", "webp"], key="bg_upload")
     if bg:
         st.image(bg, caption="Xem trước hình nền", use_container_width=True)
@@ -288,13 +330,21 @@ with st.sidebar:
         else:
             st.warning("Ảnh nền vượt 5 MB. Hãy nén ảnh nhỏ hơn để áp dụng làm nền.")
     else:
-        # Animated pastel presets; all CSS-only, no external image dependency.
-        if theme == "Dải ngân hà hồng":
-            st.markdown("<style>@keyframes galaxyMove{0%{background-position:0% 50%}100%{background-position:100% 50%}} [data-testid='stAppViewContainer']{background:radial-gradient(circle at 20% 30%,#ffd6ee 0,transparent 28%),radial-gradient(circle at 80% 20%,#d9c7ff 0,transparent 32%),linear-gradient(120deg,#fff0f8,#eadfff,#ffddeb)!important;background-size:220% 220%!important;animation:galaxyMove 18s ease infinite}</style>", unsafe_allow_html=True)
-        elif theme == "Sóng biển hồng":
-            st.markdown("<style>@keyframes waveMove{0%{background-position:0 0}100%{background-position:800px 0}} [data-testid='stAppViewContainer']{background:repeating-radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.5) 0 16px,transparent 18px 42px),linear-gradient(135deg,#ffe5f1,#e4f6ff,#ffd6e9)!important;background-size:auto,240% 240%!important;animation:waveMove 24s linear infinite}</style>", unsafe_allow_html=True)
-        elif theme == "Hồng mộng mơ":
-            st.markdown("<style>@keyframes dreamMove{0%{background-position:0% 40%}50%{background-position:100% 60%}100%{background-position:0% 40%}} [data-testid='stAppViewContainer']{background:linear-gradient(120deg,#fff8fc,#ffe4ef,#f7e7ff,#fff1f7)!important;background-size:300% 300%!important;animation:dreamMove 22s ease infinite}</style>", unsafe_allow_html=True)
+        # Presets are CSS-only, so they work on Streamlit Cloud without external assets.
+        presets = {
+            "Hồng mộng mơ (động)": "@keyframes phucsDream{0%{background-position:0% 40%}50%{background-position:100% 60%}100%{background-position:0% 40%}} [data-testid='stAppViewContainer']{background:linear-gradient(120deg,#fff8fc,#ffe4ef,#f4e7ff,#fff1f7)!important;background-size:300% 300%!important;animation:phucsDream 22s ease infinite}",
+            "Dải ngân hà hồng (động)": "@keyframes phucsGalaxy{0%{background-position:0% 50%}100%{background-position:100% 50%}} [data-testid='stAppViewContainer']{background:radial-gradient(circle at 20% 30%,#ffd6ee 0,transparent 28%),radial-gradient(circle at 80% 20%,#cfc4ff 0,transparent 32%),linear-gradient(120deg,#fff0f8,#e4d8ff,#ffddeb)!important;background-size:220% 220%!important;animation:phucsGalaxy 18s ease infinite}",
+            "Sóng biển pastel (động)": "@keyframes phucsWave{0%{background-position:0% 50%}100%{background-position:100% 50%}} [data-testid='stAppViewContainer']{background:repeating-radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.42) 0 16px,transparent 18px 42px),linear-gradient(135deg,#ffe5f1,#dff5ff,#ffd6e9)!important;background-size:auto,240% 240%!important;animation:phucsWave 24s linear infinite}",
+            "Cực quang tím hồng (động)": "@keyframes phucsAurora{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}} [data-testid='stAppViewContainer']{background:radial-gradient(ellipse at 15% 15%,#e8c7ff 0,transparent 38%),radial-gradient(ellipse at 85% 30%,#ffc9e8 0,transparent 35%),linear-gradient(125deg,#f8efff,#dce8ff,#ffe7f3)!important;background-size:220% 220%!important;animation:phucsAurora 20s ease infinite}",
+            "Bình minh đào (động)": "@keyframes phucsSunrise{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}} [data-testid='stAppViewContainer']{background:linear-gradient(125deg,#fff1dc,#ffd8d2,#ffe8f4,#fff4dd)!important;background-size:300% 300%!important;animation:phucsSunrise 25s ease infinite}",
+            "Mây trôi xanh hồng (động)": "@keyframes phucsClouds{0%{background-position:0% 0%}100%{background-position:500px 0%}} [data-testid='stAppViewContainer']{background:radial-gradient(ellipse at 20% 20%,#fff 0 7%,transparent 30%),radial-gradient(ellipse at 70% 35%,#fff 0 8%,transparent 32%),linear-gradient(135deg,#dff5ff,#f7e8ff,#ffe7f2)!important;background-size:650px 500px,800px 600px,200% 200%!important;animation:phucsClouds 36s linear infinite}",
+            "Hoa anh đào (tĩnh)": "[data-testid='stAppViewContainer']{background:radial-gradient(circle at 12% 18%,#ffd3e5 0,transparent 25%),radial-gradient(circle at 90% 70%,#f7d9ff 0,transparent 30%),linear-gradient(135deg,#fff8fc,#ffedf5,#fffafd)!important}",
+            "Bầu trời xanh (tĩnh)": "[data-testid='stAppViewContainer']{background:radial-gradient(ellipse at 20% 15%,#fff 0 5%,transparent 28%),linear-gradient(155deg,#e0f5ff,#f4f0ff 55%,#ffeaf4)!important}",
+            "Hoàng hôn tím (tĩnh)": "[data-testid='stAppViewContainer']{background:linear-gradient(145deg,#fbe4ff,#e7ddff 48%,#ffdfe8)!important}",
+            "Giấy kem tối giản (tĩnh)": "[data-testid='stAppViewContainer']{background:linear-gradient(135deg,#fffaf0,#f8f1e8,#fff7fb)!important}"
+        }
+        if theme in presets:
+            st.markdown(f"<style>{presets[theme]}</style>", unsafe_allow_html=True)
     st.divider()
     with st.expander("⚙️ Cài đặt"):
         st.markdown("**P.H.U.C.S AI Plus**")
@@ -319,7 +369,7 @@ with st.sidebar:
         st.caption("Tùy chọn giọng đọc cần tích hợp dịch vụ Text-to-Speech.")
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
-        st.write("P.H.U.C.S Alpha 2")
+        st.write("P.H.U.C.S Alpha 1")
         st.caption("Bản khởi đầu. Các bản sau sẽ bổ sung đăng nhập, đồng bộ và công cụ nâng cao.")
 
     st.divider()
@@ -358,16 +408,26 @@ with st.sidebar:
                 st.rerun()
 
 # ---------- Header ----------
-st.markdown("""
-<div class="hero">
-  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-    <div><div class="brand" style="font-size:2.3rem">P.H.U.C.S AI</div>
-    <div class="slogan">Đồng hành cùng P.H.U.C.S, vững bước thành công</div>
-    <div class="small-muted">Personal Highly Useful Computer System · Alpha 2</div></div>
+st.markdown(f"""
+<div class="welcome-hero">
+  <div style="display:flex;align-items:center;gap:18px;position:relative;z-index:1;flex-wrap:wrap">
+    <div style="font-size:2.5rem;line-height:1">👋</div>
+    <div style="flex:1;min-width:230px">
+      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:clamp(1.7rem,3vw,2.45rem);color:#a82f62;line-height:1.2">Xin chào, {user['display_name']}!</div>
+      <div style="font-size:1.02rem;color:#7b3155;margin-top:.55rem">Mình là P.H.U.C.S AI — luôn sẵn sàng hỗ trợ bạn học tập, khám phá và chinh phục mọi ước mơ!</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem">
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">✦ Học tập thông minh</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">🔎 Tìm kiếm kiến thức</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">🪄 Sáng tạo nội dung</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">♡ Đồng hành 24/7</span>
+      </div>
+    </div>
+    <div style="text-align:center;min-width:125px;padding:10px 14px;background:rgba(255,255,255,.65);border:1px solid #f8d5e5;border-radius:22px">
+      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">Alpha 2 · Learning buddy</div>
+    </div>
   </div>
 </div>
 """, unsafe_allow_html=True)
-st.write("")
 
 pages = st.tabs(["💬 Cơ bản", "⏱️ Đồng hồ học", "📅 Lịch & Sự kiện", "✅ To-do List",
                  "📝 Note & Studio", "📊 Biểu đồ", "🎮 Giải trí", "🧪 Phòng thí nghiệm",
