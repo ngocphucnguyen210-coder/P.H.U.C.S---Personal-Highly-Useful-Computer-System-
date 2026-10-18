@@ -296,7 +296,7 @@ with st.sidebar:
     st.divider()
     language_options = ["Tiếng Việt", "English", "한국어", "Français", "Deutsch", "日本語", "Español", "Русский", "中文", "ไทย", "Português", "Italiano"]
     language = st.selectbox("🌐 Language / Ngôn ngữ", language_options, key="ui_language")
-    theme = st.selectbox(tr("🎨 Giao diện & Hình nền"), [
+    theme = st.selectbox(("🎨 Giao diện & Hình nền"), [
         "Hồng mộng mơ (động)", "Dải ngân hà hồng (động)", "Sóng biển pastel (động)",
         "Cực quang tím hồng (động)", "Bình minh đào (động)", "Mây trôi xanh hồng (động)",
         "Hoa anh đào (tĩnh)", "Bầu trời xanh (tĩnh)", "Hoàng hôn tím (tĩnh)",
