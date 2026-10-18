@@ -113,6 +113,43 @@ def inject_css():
     .stTabs [aria-selected="true"] { color:#fff!important; }
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] label, [data-testid="stSidebar"] .stMarkdown { color:#48263a; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+    /* Contrast reset: explicitly style all common Streamlit widgets in light theme. */
+    [data-testid="stAppViewContainer"] { color:#30202a!important; }
+    [data-testid="stAppViewContainer"] p,[data-testid="stAppViewContainer"] li,
+    [data-testid="stAppViewContainer"] label,[data-testid="stAppViewContainer"] .stMarkdown,
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] { color:#30202a; }
+    [data-testid="stTextInput"] input,[data-testid="stNumberInput"] input,
+    [data-testid="stTextArea"] textarea,[data-testid="stChatInput"] textarea,
+    [data-testid="stDateInput"] input,[data-testid="stTimeInput"] input {
+      background:#fff!important;color:#30202a!important;-webkit-text-fill-color:#30202a!important;
+      border:1.5px solid #d58bad!important; caret-color:#a82f62!important;
+    }
+    input::placeholder,textarea::placeholder { color:#705565!important;opacity:1!important; }
+    [data-baseweb="select"] > div,[data-baseweb="popover"] [role="listbox"],
+    [data-baseweb="menu"], [data-testid="stSelectbox"] [data-baseweb="select"] > div {
+      background:#fff!important;color:#30202a!important;border-color:#d58bad!important;
+    }
+    [data-baseweb="popover"] *,[role="option"], [role="listbox"] * { color:#30202a!important; }
+    [data-testid="stCheckbox"] label,[data-testid="stRadio"] label,
+    [data-testid="stToggle"] label,[data-testid="stSlider"] label { color:#30202a!important; }
+    [data-testid="stExpander"] summary,[data-testid="stExpander"] summary p,
+    [data-testid="stMetric"] label,[data-testid="stMetric"] [data-testid="stMetricValue"] { color:#30202a!important; }
+    [data-testid="stFileUploader"] section,[data-testid="stFileUploader"] section * { color:#30202a!important; }
+    [data-testid="stChatMessage"] { border-radius:20px!important; padding:1rem 1.1rem!important; margin:.65rem 0!important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) { background:#fff!important;border:1px solid #efbfd5!important;box-shadow:0 7px 20px rgba(150,50,95,.08)!important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) { background:linear-gradient(135deg,#ffe0ef,#f7e7ff)!important;border:1px solid #e7a9c8!important; }
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] { color:#30202a!important;line-height:1.72; }
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li,
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] code { color:#30202a!important; }
+    [data-testid="stChatInput"] { border-radius:22px!important;background:#fff!important; }
+    [data-testid="stChatInput"] textarea { border-radius:18px!important; }
+    [data-testid="stChatInput"] button { background:#df2f8b!important;color:#fff!important;border-radius:14px!important; }
+    [data-testid="stAlert"] p,[data-testid="stAlert"] li { color:#30202a!important; }
+    /* Keep math and code readable even on a custom background. */
+    [data-testid="stMarkdownContainer"] .katex, .katex-display { color:#30202a!important; }
+    [data-testid="stMarkdownContainer"] pre { background:#fff!important;border:1px solid #efd0df!important;border-radius:12px; }
+    [data-testid="stMarkdownContainer"] code { color:#8f2854; }
     @media (max-width: 760px) { .welcome-hero {padding:1.2rem;} .hero {padding:1.2rem;} .stTabs [data-baseweb="tab"] {padding:7px 9px;} }
     </style>
     """, unsafe_allow_html=True)
@@ -314,6 +351,15 @@ with st.sidebar:
         [data-testid="stChatMessage"] p,[data-testid="stChatMessage"] li {color:#fff5fb!important}
         [data-testid="stChatInput"] textarea {background:#241b2d!important;color:#fff!important;border:1px solid #b66c9b!important}
         [data-testid="stExpander"],[data-testid="stMetric"] {background:#302238!important;color:#fff!important;border-color:#62445f!important}
+        [data-testid="stTextInput"] input,[data-testid="stNumberInput"] input,[data-testid="stTextArea"] textarea,[data-testid="stDateInput"] input,[data-testid="stTimeInput"] input,[data-testid="stChatInput"] textarea {background:#211927!important;color:#fff7fc!important;-webkit-text-fill-color:#fff7fc!important;border-color:#b66c9b!important}
+        [data-baseweb="select"] > div,[data-baseweb="popover"] [role="listbox"],[data-baseweb="menu"] {background:#302238!important;color:#fff7fc!important}
+        [data-baseweb="popover"] *,[role="option"],[role="listbox"] * {color:#fff7fc!important}
+        [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {background:#302238!important;color:#fff7fc!important}
+        [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {background:#57304b!important;color:#fff7fc!important}
+        [data-testid="stChatMessage"] p,[data-testid="stChatMessage"] li,[data-testid="stChatMessage"] code {color:#fff7fc!important}
+        [data-testid="stAppViewContainer"] p,[data-testid="stAppViewContainer"] li,[data-testid="stAppViewContainer"] label,[data-testid="stAppViewContainer"] .stMarkdown,[data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] {color:#f8edf7!important}
+        [data-testid="stMarkdownContainer"] pre {background:#211927!important;border-color:#62445f!important}
+        [data-testid="stMarkdownContainer"] code {color:#ffd4ea!important}
         </style>""", unsafe_allow_html=True)
     bg = st.file_uploader("Tải hình nền riêng", type=["png", "jpg", "jpeg", "webp"], key="bg_upload")
     if bg:
@@ -369,7 +415,7 @@ with st.sidebar:
         st.caption("Tùy chọn giọng đọc cần tích hợp dịch vụ Text-to-Speech.")
         st.divider()
         st.markdown("**ⓘ Giới thiệu**")
-        st.write("P.H.U.C.S AlphaOS 2")
+        st.write("P.H.U.C.S Alpha 1")
         st.caption("Bản khởi đầu. Các bản sau sẽ bổ sung đăng nhập, đồng bộ và công cụ nâng cao.")
 
     st.divider()
@@ -423,7 +469,7 @@ st.markdown(f"""
       </div>
     </div>
     <div style="text-align:center;min-width:125px;padding:10px 14px;background:rgba(255,255,255,.65);border:1px solid #f8d5e5;border-radius:22px">
-      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">AlphaOS 2 · Learning buddy</div>
+      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">Alpha 2 · Learning buddy</div>
     </div>
   </div>
 </div>
@@ -449,10 +495,21 @@ def _friendly_ai_error(exc):
     return f"Chưa thể kết nối AI: {detail[:700]}. Kiểm tra API key, model, hạn mức và Logs của Streamlit."
 
 
+# Render markdown/math consistently. Streamlit's Markdown renderer supports LaTeX,
+# but some providers return escaped delimiters; normalize only the delimiters, not math symbols.
+def render_chat_content(content):
+    import re
+    text = str(content or "")
+    text = text.replace("\\[", "$$").replace("\\]", "$$")
+    text = text.replace("\\(", "$").replace("\\)", "$")
+    # Convert common display-math delimiters when they arrived as literal escaped text.
+    text = re.sub(r"(?<!\\)\\begin\{(aligned|align|gathered|cases)\}", r"\\begin{\1}", text)
+    st.markdown(text, unsafe_allow_html=False)
+
 # ---------- Chat ----------
 with pages[0]:
-    st.subheader("Trợ lý học tập của bạn")
-    st.caption("Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
+    st.markdown("""<div class="hero phucs-chat-header"><div style="display:flex;align-items:center;gap:14px"><div style="font-size:2.6rem">💌</div><div><h2 style="margin:0;color:#8f2854">Hộp thư P.H.U.C.S</h2><p style="margin:.25rem 0 0;color:#705565">Một góc nhỏ xinh để hỏi bài, tâm sự và cùng nhau học tốt hơn ✨</p></div><div style="margin-left:auto;background:#e5f8eb;color:#176b3a;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:800">● AI đồng hành</div></div></div>""", unsafe_allow_html=True)
+    st.caption("💗 Hỏi về Toán, Văn, Anh, Lý, Hóa, Sinh, Sử, Địa, ngoại ngữ, kỹ năng và kiến thức đời sống.")
     # Streamlit Cloud Secrets first, then environment/.env for local development.
     def setting(name, default=""):
         try:
@@ -483,8 +540,8 @@ with pages[0]:
             except Exception as check_exc:
                 st.error(_friendly_ai_error(check_exc))
     for message in st.session_state.get("messages", []):
-        with st.chat_message(message["role"], avatar="🎓" if message["role"] == "assistant" else "🙂"):
-            st.markdown(message["content"])
+        with st.chat_message(message["role"], avatar="🎀" if message["role"] == "assistant" else "🌸"):
+            render_chat_content(message["content"])
     uploaded = st.file_uploader("📷 Đính kèm ảnh bài tập (tùy chọn)", type=["png", "jpg", "jpeg", "webp"], key="chat_image")
     if uploaded:
         st.image(uploaded, caption="Ảnh đính kèm sẽ được gửi cho model vision khi bạn đặt câu hỏi.", width=300)
@@ -514,14 +571,16 @@ with pages[0]:
             except Exception as web_exc:
                 st.warning(f"Không tìm được web: {web_exc}")
         st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user", avatar="🙂"):
-            st.markdown(prompt)
+        with st.chat_message("user", avatar="🌸"):
+            render_chat_content(prompt)
             if uploaded: st.image(uploaded, width=220)
         answer = None
         if api_key:
             try:
                 system_prompt = (
                     "Bạn là P.H.U.C.S, trợ lý học tập đa môn, thân thiện và có trách nhiệm. "
+                    "Khi viết công thức Toán/Lý/Hóa, hãy dùng cú pháp LaTeX chuẩn: $...$ cho công thức trong dòng và $$...$$ cho công thức riêng dòng; "
+                    "không đặt công thức trong dấu nháy hoặc code block trừ khi người dùng hỏi về mã nguồn. Giữ nguyên các ký hiệu Unicode như ×, ÷, ≤, ≥, ≠, √, π, ∑, ∫, →, °, Ω và chỉ số dưới/trên khi phù hợp. "
                     "Trả lời bằng ngôn ngữ người dùng đang dùng. Với Toán và khoa học, nêu dữ kiện, "
                     "công thức, đơn vị, các bước suy luận và tự kiểm tra kết quả khi có thể. Với bài trắc nghiệm, "
                     "giải thích vì sao đáp án đúng và vì sao lựa chọn gần đúng có thể sai. Với ngôn ngữ, giải thích "
@@ -542,17 +601,17 @@ with pages[0]:
                             st.info(f"Tự chuyển sang model đang được hỗ trợ: {model_used}")
                         if web_context:
                             answer += "\n\n### Nguồn tham khảo từ tìm kiếm web\n" + "\n".join([f"- [{item.get('title') or 'Nguồn tham khảo'}]({item.get('url')})" for item in web_data.get("results", [])[:5] if item.get("url")])
-                        st.markdown(answer)
+                        render_chat_content(answer)
             except Exception as e:
                 answer = _friendly_ai_error(e)
-                with st.chat_message("assistant", avatar="🎓"):
+                with st.chat_message("assistant", avatar="🎀"):
                     st.error(answer)
         else:
             answer = ("Mình đã nhận được câu hỏi! Để bật AI, hãy tạo khóa Groq tại "
                       "https://console.groq.com/keys rồi thêm `GROQ_API_KEY` vào Streamlit Secrets. "
                       "Sau khi cấu hình, mình sẽ giải thích từng bước và ưu tiên độ chính xác.")
-            with st.chat_message("assistant", avatar="🎓"):
-                st.markdown(answer)
+            with st.chat_message("assistant", avatar="🎀"):
+                render_chat_content(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
         if not st.session_state.get("active_chat"):
             title = prompt[:48] + ("…" if len(prompt) > 48 else "")
@@ -811,6 +870,47 @@ with pages[5]:
 with pages[6]:
     st.subheader("🎮 Góc giải trí lành mạnh")
     st.markdown("<div class='hero'><h3>🌸 Học vui mỗi ngày</h3><p>Chọn một thử thách ngắn để nạp lại năng lượng sau khi học.</p><div style='font-size:2rem;letter-spacing:.25rem'>🧩 🎯 🧠 🚀 🪄 🐼 🌈 🎨</div></div>", unsafe_allow_html=True)
+    with st.expander("🎧 Góc LOFI — nhạc không lời để tập trung", expanded=True):
+        st.markdown("<div class='hero'><h3>☁️ Study café · chill beats</h3><p>Chọn một gợi ý trong 30 playlist/bản nhạc tìm nhanh. Liên kết mở YouTube để phát bản nhạc tương ứng; trình phát radio LOFI bên dưới có thể nghe ngay trong ứng dụng.</p></div>", unsafe_allow_html=True)
+        lofi_tracks = [
+            ("01 · Snowfall — piano lofi", "Snowfall lofi hip hop instrumental piano"),
+            ("02 · Coffee & Rain", "coffee rain lofi chill instrumental"),
+            ("03 · Midnight Library", "midnight library lofi study instrumental"),
+            ("04 · Sakura Dreams", "sakura dreams japanese lofi instrumental"),
+            ("05 · Quiet Morning", "quiet morning lofi instrumental study"),
+            ("06 · Warm Cocoa", "warm cocoa cozy lofi instrumental"),
+            ("07 · Moonlight Walk", "moonlight walk chill lofi instrumental"),
+            ("08 · Cloud Nine", "cloud nine dreamy lofi instrumental"),
+            ("09 · Rainy Window", "rainy window lofi beats no vocals"),
+            ("10 · Blue Hour", "blue hour chillhop instrumental"),
+            ("11 · Study with Cats", "cute cat lofi study beats instrumental"),
+            ("12 · Stardust", "stardust space lofi instrumental"),
+            ("13 · Peach Soda", "peach soda chill lofi instrumental"),
+            ("14 · Autumn Leaves", "autumn leaves mellow lofi instrumental"),
+            ("15 · Sunday Nap", "sunday nap cozy lofi instrumental"),
+            ("16 · City Lights", "city lights night drive lofi instrumental"),
+            ("17 · Ocean Breeze", "ocean breeze chill lofi instrumental"),
+            ("18 · Lavender Sky", "lavender sky lofi piano instrumental"),
+            ("19 · Little Garden", "little garden relaxing lofi instrumental"),
+            ("20 · Train to Somewhere", "train journey lofi instrumental no vocals"),
+            ("21 · Floating Islands", "floating islands fantasy lofi instrumental"),
+            ("22 · Gentle Focus", "gentle focus study lofi instrumental"),
+            ("23 · Soft Rain on Roof", "soft rain on roof lofi instrumental"),
+            ("24 · After School", "after school chillhop lofi instrumental"),
+            ("25 · Paper Planes", "paper planes mellow lofi instrumental"),
+            ("26 · Pink Clouds", "pink clouds dreamy lofi instrumental"),
+            ("27 · Winter Tea", "winter tea cozy lofi instrumental"),
+            ("28 · Dreamy Kyoto", "dreamy kyoto japanese chill lofi instrumental"),
+            ("29 · Deep Work", "deep work focus beats instrumental lofi"),
+            ("30 · Good Night Study", "good night study lofi instrumental calm")
+        ]
+        selected_track = st.selectbox("🎼 Chọn nhạc để mở", [x[0] for x in lofi_tracks], key="lofi_track_choice")
+        query = next(q for title, q in lofi_tracks if title == selected_track)
+        from urllib.parse import quote_plus
+        st.link_button("▶️ Mở bản nhạc đã chọn trên YouTube", "https://www.youtube.com/results?search_query=" + quote_plus(query), use_container_width=True)
+        st.caption("Danh sách gồm 30 gợi ý tìm kiếm, không phải 30 tệp âm thanh được lưu trong ứng dụng. Chọn kết quả phù hợp trên YouTube để nghe.")
+        st.markdown("**📻 Radio LOFI phát ngay trong P.H.U.C.S**")
+        st.components.v1.iframe("https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0", height=230, scrolling=False)
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), width=150, caption="Mascot P.H.U.C.S — chinh phục tri thức")
     games = {
@@ -1135,4 +1235,4 @@ with pages[10]:
     st.caption("Lưu trữ đám mây bền vững cần SUPABASE_URL, SUPABASE_ANON_KEY và bucket phucs-files cùng Storage policies.")
 
 st.divider()
-st.caption("💌P.H.U.C.S AI được tạo ra để thay đổi thế giới, còn Nguyễn Ngọc Gia Phúc được sinh ra để tạo nên những điều kỳ diệu - Copyright © 2026 by Nguyễn Ngọc Gia Phúc..")
+st.caption("P.H.U.C.S Alpha 2 · Một số tích hợp cần khóa API, cấu hình nhà cung cấp, chính sách bảo mật và kiểm thử trước khi mở cho công chúng.")
