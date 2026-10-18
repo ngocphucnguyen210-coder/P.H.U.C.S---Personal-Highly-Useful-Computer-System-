@@ -66,23 +66,39 @@ def inject_css():
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
-    html, body, [class*="css"] { font-family: 'Be Vietnam Pro', sans-serif; }
-    .stApp { background: linear-gradient(135deg,#fff8fb 0%,#fff1f7 48%,#fff9fc 100%); }
-    [data-testid="stSidebar"] { background: linear-gradient(180deg,#ffe7f0 0%,#fff4f8 100%); border-right:1px solid #f5c8da; }
-    h1,h2,h3 { color:#8f2854; font-family:'Nunito','Be Vietnam Pro',sans-serif; }
-    .hero { padding:1.3rem 1.5rem; border:1px solid #f4c5d8; border-radius:24px;
-            background:linear-gradient(120deg,rgba(255,255,255,.95),rgba(255,228,239,.92));
-            box-shadow:0 12px 34px rgba(177,56,106,.09); }
-    .brand { font-family:'Nunito',sans-serif; font-weight:900; letter-spacing:.04em;
-             font-size:clamp(2rem,5vw,3.8rem); color:#d94f83; line-height:1.05; }
-    .slogan { color:#8f2854; font-weight:600; font-size:1.03rem; }
-    .small-muted { color:#8e6a7a; font-size:.9rem; }
-    div.stButton > button { border-radius:14px; border:1px solid #efb5cc; font-weight:700; }
-    div.stButton > button[kind="primary"] { background:#d94f83; color:white; border:0; }
-    [data-testid="stMetric"] { background:#fff; padding:1rem; border:1px solid #f4d0df; border-radius:18px; }
-    .stTabs [data-baseweb="tab-list"] { gap:8px; }
-    .stTabs [data-baseweb="tab"] { background:#ffe8f1; border-radius:12px 12px 0 0; padding:10px 16px; }
-    .stTabs [aria-selected="true"] { background:#d94f83 !important; color:white !important; }
+    :root { --phucs-pink:#ec4899; --phucs-hot:#d92f87; --phucs-deep:#8f2854; --phucs-pale:#fff3f8; --phucs-line:#f7c9df; }
+    html, body, [class*="css"] { font-family:'Be Vietnam Pro',sans-serif; }
+    .stApp { background:radial-gradient(ellipse at 12% 5%,rgba(255,211,231,.62),transparent 33%),radial-gradient(ellipse at 92% 18%,rgba(255,226,240,.72),transparent 28%),linear-gradient(135deg,#fff9fc 0%,#fff0f7 48%,#fffafd 100%); color:#52253e; }
+    [data-testid="stHeader"] { background:rgba(255,248,252,.76); }
+    [data-testid="stSidebar"] { background:linear-gradient(180deg,#ffe5f1 0%,#fff3f8 55%,#fffafd 100%); border-right:1px solid #f5c4da; }
+    [data-testid="stSidebar"] > div:first-child { padding-top:1.1rem; }
+    [data-testid="stSidebar"] [data-testid="stImage"] img { border-radius:22px; }
+    h1,h2,h3 { color:var(--phucs-deep); font-family:'Nunito','Be Vietnam Pro',sans-serif; font-weight:850; }
+    h1 { letter-spacing:-.035em; }
+    .hero { position:relative; overflow:hidden; padding:1.6rem 1.8rem; border:1px solid rgba(244,174,205,.8); border-radius:28px;
+      background:linear-gradient(112deg,rgba(255,255,255,.94),rgba(255,226,240,.86)),radial-gradient(circle at 88% 15%,#ffd2e7,transparent 35%);
+      box-shadow:0 14px 38px rgba(177,56,106,.10); }
+    .welcome-hero { position:relative; overflow:hidden; padding:1.7rem 1.8rem; margin:.3rem 0 1.1rem; border:1px solid #f4bfd7; border-radius:28px;
+      background:linear-gradient(110deg,rgba(255,255,255,.97) 0%,rgba(255,240,247,.94) 52%,rgba(255,219,237,.84) 100%);
+      box-shadow:0 12px 32px rgba(177,56,106,.09); }
+    .welcome-hero:after { content:'♡'; position:absolute; right:5%; top:-35px; font-size:170px; line-height:1; color:rgba(236,72,153,.09); transform:rotate(15deg); pointer-events:none; }
+    .brand { font-family:'Nunito',sans-serif; font-weight:900; letter-spacing:.035em; font-size:clamp(2rem,5vw,3.5rem); color:#d93687; line-height:1.05; }
+    .slogan { color:#8f2854; font-weight:700; font-size:1rem; }
+    .small-muted { color:#986d83; font-size:.9rem; }
+    div.stButton > button, .stLinkButton a { border-radius:16px; border:1px solid #f1b6d0; font-weight:700; transition:all .18s ease; }
+    div.stButton > button:hover, .stLinkButton a:hover { border-color:#e879ae; color:#a82f62; box-shadow:0 5px 16px rgba(217,47,135,.12); transform:translateY(-1px); }
+    div.stButton > button[kind="primary"] { background:linear-gradient(135deg,#f472b6,#df2f8b); color:white; border:0; box-shadow:0 6px 18px rgba(217,47,135,.18); }
+    [data-testid="stMetric"] { background:rgba(255,255,255,.86); padding:1rem; border:1px solid #f4d0df; border-radius:20px; box-shadow:0 5px 18px rgba(177,56,106,.045); }
+    [data-testid="stExpander"] { border:1px solid #f5c9dc; border-radius:16px; background:rgba(255,255,255,.72); }
+    [data-testid="stChatMessage"] { background:rgba(255,255,255,.78); border:1px solid #f7d6e5; border-radius:18px; padding:.85rem 1rem; }
+    [data-testid="stChatInput"] textarea { border-radius:22px!important; border-color:#f1b6d0!important; background:rgba(255,255,255,.92)!important; }
+    .stTabs [data-baseweb="tab-list"] { gap:7px; padding:7px; border:1px solid #f6c8dc; border-radius:19px; background:rgba(255,255,255,.72); flex-wrap:wrap; }
+    .stTabs [data-baseweb="tab"] { background:#fff0f7; border:1px solid #f8d5e5; border-radius:14px; padding:9px 14px; color:#8f2854; }
+    .stTabs [aria-selected="true"] { background:linear-gradient(135deg,#f472b6,#df2f8b)!important; color:white!important; border-color:#df2f8b!important; }
+    [data-testid="stFileUploader"] section { background:rgba(255,255,255,.68); border:1px dashed #e9a9c7; border-radius:16px; }
+    input, textarea, [data-baseweb="select"] > div { border-radius:13px!important; }
+    hr { border-color:#f3c8db!important; }
+    @media (max-width: 760px) { .welcome-hero {padding:1.2rem;} .hero {padding:1.2rem;} .stTabs [data-baseweb="tab"] {padding:7px 9px;} }
     </style>
     """, unsafe_allow_html=True)
 
@@ -358,16 +374,26 @@ with st.sidebar:
                 st.rerun()
 
 # ---------- Header ----------
-st.markdown("""
-<div class="hero">
-  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-    <div><div class="brand" style="font-size:2.3rem">P.H.U.C.S AI</div>
-    <div class="slogan">Đồng hành cùng P.H.U.C.S, vững bước thành công</div>
-    <div class="small-muted">Personal Highly Useful Computer System · Alpha 2</div></div>
+st.markdown(f"""
+<div class="welcome-hero">
+  <div style="display:flex;align-items:center;gap:18px;position:relative;z-index:1;flex-wrap:wrap">
+    <div style="font-size:2.5rem;line-height:1">👋</div>
+    <div style="flex:1;min-width:230px">
+      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:clamp(1.7rem,3vw,2.45rem);color:#a82f62;line-height:1.2">Xin chào, {user['display_name']}!</div>
+      <div style="font-size:1.02rem;color:#7b3155;margin-top:.55rem">Mình là P.H.U.C.S AI — luôn sẵn sàng hỗ trợ bạn học tập, khám phá và chinh phục mọi ước mơ!</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem">
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">✦ Học tập thông minh</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">🔎 Tìm kiếm kiến thức</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">🪄 Sáng tạo nội dung</span>
+        <span style="background:#fff;border:1px solid #f5c6dc;border-radius:999px;padding:8px 13px;color:#a82f62;font-size:.86rem">♡ Đồng hành 24/7</span>
+      </div>
+    </div>
+    <div style="text-align:center;min-width:125px;padding:10px 14px;background:rgba(255,255,255,.65);border:1px solid #f8d5e5;border-radius:22px">
+      <div style="font-size:2.3rem">🎓</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.25rem;color:#df2f8b">P.H.U.C.S AI</div><div style="font-size:.78rem;color:#986d83">Alpha 2 · Learning buddy</div>
+    </div>
   </div>
 </div>
 """, unsafe_allow_html=True)
-st.write("")
 
 pages = st.tabs(["💬 Cơ bản", "⏱️ Đồng hồ học", "📅 Lịch & Sự kiện", "✅ To-do List",
                  "📝 Note & Studio", "📊 Biểu đồ", "🎮 Giải trí", "🧪 Phòng thí nghiệm",
