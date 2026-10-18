@@ -1,5 +1,5 @@
-[README.md](https://github.com/user-attachments/files/33622336/README.md)
-# P.H.U.C.S AI — Alpha 2 (Streamlit + Groq)
+[README.md](https://github.com/user-attachments/files/33628310/README.md)
+# P.H.U.C.S AI — AlphaOS 2 (Streamlit + Groq)
 
 **P.H.U.C.S — Personal Highly Useful Computer System**  
 Slogan: **“Đồng hành cùng P.H.U.C.S, vững bước thành công”**
